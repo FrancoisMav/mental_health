@@ -12,21 +12,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post("/whatsapp/", async (req, res) => {
   console.log(req.body)
-  // const message = req.body.Body;
-  // const sender = req.body.From;
-  // const receiver = req.body.To;
-  // const numMedia = req.body.NumMedia;
-  // const name = req.body.ProfileName;
-  // const incident = req.body.SmsMessageSid;
+  const message = req.body.Body;
+  const sender = req.body.From;
+  const receiver = req.body.To;
+  const numMedia = req.body.NumMedia;
+  const name = req.body.ProfileName;
+  const incident = req.body.SmsMessageSid;
   let date = moment().tz("Africa/Harare").format("YYYY-MM-DD HH:mm:ss");
 
 
-  const message = "hie";
-  const sender = "whatsapp:+263783857780";
-  const receiver = "whatsapp:+14155238886";
-  const numMedia = "0";
-  const name = "Francois";
-  const incident = "hallo";
+  // const message = "hie";
+  // const sender = "whatsapp:+263783857780";
+  // const receiver = "whatsapp:+14155238886";
+  // const numMedia = "0";
+  // const name = "Francois";
+  // const incident = "hallo";
 
   try {
     let db = new sqlite3.Database(
@@ -224,13 +224,14 @@ app.post("/whatsapp/", async (req, res) => {
 app.post("/callback/", (req, res) => {
     res.sendStatus(200);
 });
+  app.get("/callback/", (req, res) => {
+    res.sendStatus(200);
+});
 
 app.use(function(req, res, next) {
   res.status(404).send('Sorry, we cannot find that!');
   });
 
 
-  app.get("/callback/", (req, res) => {
-    res.sendStatus(200);
-});
+
 app.listen(8000, () => console.log("Server is running on port 8000"));
